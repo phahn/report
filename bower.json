@@ -1,0 +1,20 @@
+{
+  "name": "report",
+  "version": "0.0.0",
+  "authors": [
+    "Pascal Hahn <hahnpascal@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "latest",
+    "angular-resource": "latest",
+    "angular-route": "latest",
+    "bootstrap": "latest",
+    "angular-ui-utils": "latest",
+    "angular-bootstrap": "latest",   
+    "angularjs-nvd3-directives": "latest",
+    "angular-moment": "latest",
+    "angular-i18n":"latest"
+  }
+}
