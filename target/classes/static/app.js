@@ -1,4 +1,4 @@
-var deliveryPlanApp = angular.module('deliveryPlanApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'nvd3ChartDirectives', 'angularMoment', 'daterangepicker']);
+var deliveryPlanApp = angular.module('deliveryPlanApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'nvd3ChartDirectives', 'angularMoment']);
 
 // our view controllers
 deliveryPlanApp.config(['$routeProvider',

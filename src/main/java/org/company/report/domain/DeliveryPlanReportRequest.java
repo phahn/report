@@ -1,8 +1,9 @@
 package org.company.report.domain;
 
+import java.time.LocalDate;
+
 import javax.validation.constraints.Min;
 
-import org.joda.time.LocalDate;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.format.annotation.DateTimeFormat;
 

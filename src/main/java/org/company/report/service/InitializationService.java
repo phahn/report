@@ -1,12 +1,12 @@
 package org.company.report.service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Random;
 
 import javax.annotation.PostConstruct;
 
 import org.company.report.domain.DeliveryPlanPosition;
-import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

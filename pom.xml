@@ -41,21 +41,21 @@
 		</dependency>
 		
 		<!--  joda time and hibernate & jackson serializers -->
+		
 		<dependency>
-		    <groupId>joda-time</groupId>
-		    <artifactId>joda-time</artifactId>	   
+		    <groupId>com.fasterxml.jackson.datatype</groupId>
+		    <artifactId>jackson-datatype-jsr310</artifactId>
 		</dependency>
 		
+		<!--  
 		<dependency>
 		    <groupId>org.jadira.usertype</groupId>
 		    <artifactId>usertype.core</artifactId>
 		    <version>3.0.0.CR1</version>
 		</dependency>
+		-->
 		
-		<dependency>
-			<groupId>com.fasterxml.jackson.datatype</groupId>
-			<artifactId>jackson-datatype-joda</artifactId>
-		</dependency>
+		
 		
 		<!-- string utils -->
 		<dependency>
@@ -69,7 +69,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<start-class>org.company.report.Application</start-class>
-		<java.version>1.7</java.version>
+		<java.version>1.8</java.version>
 	</properties>
 
 	<build>

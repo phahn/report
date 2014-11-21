@@ -1,12 +1,12 @@
 package org.company.report.domain;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import org.joda.time.LocalDate;
 
 /**
  * represents a single position of the delivery plan

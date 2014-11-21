@@ -12,7 +12,7 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.joda.JodaModule;
+//import com.fasterxml.jackson.datatype.joda.JodaModule;
 
 @Configuration
 @ComponentScan
@@ -23,10 +23,9 @@ public class Application extends WebMvcConfigurerAdapter {
     private ObjectMapper objectMapper() {
         Jackson2ObjectMapperFactoryBean bean = new Jackson2ObjectMapperFactoryBean();
         bean.setIndentOutput(true);
-        bean.setSimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+        bean.setSimpleDateFormat("yyyy-mm-dd'T'HH:mm:ss.SSSZ");
         bean.afterPropertiesSet();
         ObjectMapper objectMapper = bean.getObject();
-        objectMapper.registerModule(new JodaModule());
         return objectMapper;
     }
 
