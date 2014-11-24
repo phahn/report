@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 
 import javax.validation.Valid;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
 
 import org.company.report.domain.DeliveryPlanLateDeliveriesReportRecord;
 import org.company.report.domain.DeliveryPlanMarginReportRecord;
@@ -15,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,9 +29,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author phahn
  *
  */
-@Controller
-@RequestMapping(value="/deliveryplan")
-public class DeliveryPlanController {
+@Component
+@Path("/deliveryplan")
+public class DeliveryPlanResource {
 	
 	@Autowired
 	private DeliveryPlanService deliveryPlanService;
@@ -50,8 +53,9 @@ public class DeliveryPlanController {
 	 * @param deliveryPlanRequest filter and sorting parameters for the report
 	 * @return delivery plan report
 	 */
-	@RequestMapping(value="/report", method=RequestMethod.GET)
-	public @ResponseBody ResponseEntity<Page<DeliveryPlanPosition>> getDeliveryPlan(@Valid DeliveryPlanReportRequest deliveryPlanRequest) {
+	@GET
+	@Path("/report")
+	public ResponseEntity<Page<DeliveryPlanPosition>> getDeliveryPlan(@Valid DeliveryPlanReportRequest deliveryPlanRequest) {
 		
 		// check if we have a valid order column
 		if (!new HashSet<String>(Arrays.asList(allowedOrderColumns)).contains(deliveryPlanRequest.getOrderBy())) {
@@ -65,8 +69,9 @@ public class DeliveryPlanController {
 	 * gets the margin report per customer
 	 * @return report of margins per customer
 	 */
-	@RequestMapping(value="/margins", method=RequestMethod.GET)
-	public @ResponseBody List<DeliveryPlanMarginReportRecord> getMargins() {
+	@GET
+	@Path("/margins")
+	public List<DeliveryPlanMarginReportRecord> getMargins() {
 		return deliveryPlanService.getDeliveryPlanMargins();
 	}
 	
@@ -74,8 +79,9 @@ public class DeliveryPlanController {
 	 * get the late deliveries report per customer
 	 * @return report of late deliveries per customer
 	 */
-	@RequestMapping(value="/latedeliveries", method=RequestMethod.GET)
-	public @ResponseBody List<DeliveryPlanLateDeliveriesReportRecord> getLateDeliveries() {
+	@GET
+	@Path("/latedeliveries")
+	public List<DeliveryPlanLateDeliveriesReportRecord> getLateDeliveries() {
 		return deliveryPlanService.getLateDeliveries();
 	}
 	
