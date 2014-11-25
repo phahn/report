@@ -84,10 +84,11 @@
 		</dependency>
 		
 		<dependency>
-		<groupId>org.apache.commons</groupId>
-  <artifactId>commons-lang3</artifactId>
-  <version>3.3.2</version>
-  </dependency>
+			<groupId>org.apache.commons</groupId>
+		  <artifactId>commons-lang3</artifactId>
+		  <version>3.3.2</version>
+		  <scope>compile</scope>
+	  </dependency>
 
 
 		<!-- Import the CDI API -->

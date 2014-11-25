@@ -28,17 +28,17 @@ deliveryPlanApp.factory('DeliveryPlan', function($resource) {
         query: {
             method: 'GET',
             isArray: false,
-            url: '/deliveryplan/report'
+            url: 'api/deliveryplan/report'
         },
         margins: {
             method: 'GET',
             isArray: true,
-            url: '/deliveryplan/margins'
+            url: 'api/deliveryplan/margins'
         },
         latedeliveries: {
             method: 'GET',
             isArray: true,
-            url: '/deliveryplan/latedeliveries'
+            url: 'api/deliveryplan/latedeliveries'
         },
     });
     return DeliveryPlan;

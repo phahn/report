@@ -3,6 +3,7 @@ package org.company.report.domain;
 import java.time.LocalDate;
 
 import javax.validation.constraints.Min;
+import javax.ws.rs.QueryParam;
 
 /**
  * request for showing a filtered and sorted delivery plan report
@@ -12,20 +13,28 @@ import javax.validation.constraints.Min;
 public class DeliveryPlanReportRequest {
 	
 	@Min(1)
+	@QueryParam("page") 
 	private int page = 1;
 	
 	@Min(1)
+	@QueryParam("size") 
 	private int size = 10;
 	
+	@QueryParam("orderBy") 
 	private String orderBy;
+	@QueryParam("orderDir") 
 	private String orderDir;
 	
+	@QueryParam("customerFilter") 
 	private String customerFilter;
+	@QueryParam("partFilter") 
 	private String partFilter;
+	@QueryParam("depotFilter") 
 	private String depotFilter;
 	
+	//@QueryParam("dueDateFrom") 
 	private LocalDate dueDateFrom;
-	
+	//@QueryParam("dueDateTo") 
 	private LocalDate dueDateTo;
 	
 	// getters and setters
