@@ -4,24 +4,19 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import org.company.report.domain.DeliveryPlanLateDeliveriesReportRecord;
 import org.company.report.domain.DeliveryPlanMarginReportRecord;
-import org.company.report.domain.DeliveryPlanPosition;
 import org.company.report.domain.DeliveryPlanReportRequest;
 import org.company.report.service.DeliveryPlanService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * REST-controller for the delivery plan report
@@ -29,11 +24,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author phahn
  *
  */
-@Component
 @Path("/deliveryplan")
 public class DeliveryPlanResource {
 	
-	@Autowired
+	@Inject
 	private DeliveryPlanService deliveryPlanService;
 	
 	// allowed order columns for delivery plan request
@@ -55,14 +49,15 @@ public class DeliveryPlanResource {
 	 */
 	@GET
 	@Path("/report")
-	public ResponseEntity<Page<DeliveryPlanPosition>> getDeliveryPlan(@Valid DeliveryPlanReportRequest deliveryPlanRequest) {
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getDeliveryPlan(@Valid DeliveryPlanReportRequest deliveryPlanRequest) {
 		
 		// check if we have a valid order column
 		if (!new HashSet<String>(Arrays.asList(allowedOrderColumns)).contains(deliveryPlanRequest.getOrderBy())) {
-			return new ResponseEntity<Page<DeliveryPlanPosition>>(HttpStatus.BAD_REQUEST);
+			return Response.status(Status.NOT_FOUND).build();
 		}
 		
-		return new ResponseEntity<Page<DeliveryPlanPosition>>(deliveryPlanService.find(deliveryPlanRequest), HttpStatus.OK);
+		return Response.ok(deliveryPlanService.find(deliveryPlanRequest)).build();
 	}
 	
 	/**
@@ -71,6 +66,7 @@ public class DeliveryPlanResource {
 	 */
 	@GET
 	@Path("/margins")
+	@Produces(MediaType.APPLICATION_JSON)
 	public List<DeliveryPlanMarginReportRecord> getMargins() {
 		return deliveryPlanService.getDeliveryPlanMargins();
 	}
@@ -81,6 +77,7 @@ public class DeliveryPlanResource {
 	 */
 	@GET
 	@Path("/latedeliveries")
+	@Produces(MediaType.APPLICATION_JSON)
 	public List<DeliveryPlanLateDeliveriesReportRecord> getLateDeliveries() {
 		return deliveryPlanService.getLateDeliveries();
 	}

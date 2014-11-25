@@ -5,21 +5,21 @@ import java.time.LocalDate;
 import java.util.Random;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 
 import org.company.report.domain.DeliveryPlanPosition;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  * Initializes the embedded database with sample data
  * @author phahn
  *
  */
-@Service
+@ApplicationScoped
 public class InitializationService {
 	
-	@Autowired
-	private DeliveryPlanRepository repository;
+	@Inject
+	private DeliveryPlanService deliveryPlanService;
 	
 	// sample data for parts
 	private final String parts[] = {
@@ -56,7 +56,7 @@ public class InitializationService {
 			dp.setPart(parts[i % parts.length]);
 			dp.setMargin(new BigDecimal(Math.abs(random.nextLong() %100 * 100 )));
 			dp.setQuantity(i % 100);
-			repository.save(dp);
+			deliveryPlanService.save(dp);
 		}
 	}
 

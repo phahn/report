@@ -4,9 +4,6 @@ import java.time.LocalDate;
 
 import javax.validation.constraints.Min;
 
-import org.springframework.data.domain.Sort.Direction;
-import org.springframework.format.annotation.DateTimeFormat;
-
 /**
  * request for showing a filtered and sorted delivery plan report
  * @author phahn
@@ -21,16 +18,14 @@ public class DeliveryPlanReportRequest {
 	private int size = 10;
 	
 	private String orderBy;
-	private Direction orderDir;
+	private String orderDir;
 	
 	private String customerFilter;
 	private String partFilter;
 	private String depotFilter;
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dueDateFrom;
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dueDateTo;
 	
 	// getters and setters
@@ -83,10 +78,10 @@ public class DeliveryPlanReportRequest {
 	public void setOrderBy(String orderBy) {
 		this.orderBy = orderBy;
 	}
-	public Direction getOrderDir() {
+	public String getOrderDir() {
 		return orderDir;
 	}
-	public void setOrderDir(Direction orderDir) {
+	public void setOrderDir(String orderDir) {
 		this.orderDir = orderDir;
 	}
 	
