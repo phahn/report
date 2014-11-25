@@ -5,7 +5,8 @@ import java.time.LocalDate;
 import java.util.Random;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
+import javax.ejb.Singleton;
+import javax.ejb.Startup;
 import javax.inject.Inject;
 
 import org.company.report.domain.DeliveryPlanPosition;
@@ -15,7 +16,8 @@ import org.company.report.domain.DeliveryPlanPosition;
  * @author phahn
  *
  */
-@ApplicationScoped
+@Startup
+@Singleton
 public class InitializationService {
 	
 	@Inject
@@ -39,8 +41,8 @@ public class InitializationService {
 	/**
 	 * generates sample data
 	 */
-	public void init() {
-		
+	public void init() {		
+				
 		// initialize new random generator
 		final Random random = new Random();
 		
